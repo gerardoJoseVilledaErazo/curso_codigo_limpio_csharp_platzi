@@ -102,8 +102,9 @@ namespace ToDo
                 TaskList.Add(newTask);
                 Console.WriteLine("Tarea registrada");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine($"Error: {ex.Message}");
             }
         }
 
