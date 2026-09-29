@@ -83,7 +83,7 @@ namespace ToDo
                     {
                         string taskToRemove = TaskList[indexToRemove];
                         TaskList.RemoveAt(indexToRemove);
-                        Console.WriteLine("Tarea " + taskToRemove + " eliminada");
+                        Console.WriteLine($"Tarea '{taskToRemove}' eliminada");
                     }
                 }
             }
