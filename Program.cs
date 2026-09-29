@@ -45,6 +45,18 @@ namespace ToDo
             string menuSelected = Console.ReadLine();
             return Convert.ToInt32(menuSelected);
         }
+        
+        public static void DisplayTasks()
+        {
+            Console.WriteLine("----------------------------------------");
+
+            for (int i = 0; i < TaskList.Count; i++)
+            {
+                Console.WriteLine((i + 1) + ". " + TaskList[i]);
+            }
+
+            Console.WriteLine("----------------------------------------");
+        }
 
         public static void ShowMenuRemove()
         {
@@ -52,7 +64,7 @@ namespace ToDo
             {
                 Console.WriteLine("Ingrese el número de la tarea a remover: ");
                 // Show current taks
-                ShowMenuTaskList();
+                DisplayTasks();
 
                 string taskNumberToDelete = Console.ReadLine();
                 // Remove one position
@@ -94,12 +106,7 @@ namespace ToDo
             } 
             else
             {
-                Console.WriteLine("----------------------------------------");
-                for (int i = 0; i < TaskList.Count; i++)
-                {
-                    Console.WriteLine((i + 1) + ". " + TaskList[i]);
-                }
-                Console.WriteLine("----------------------------------------");
+                DisplayTasks();
             }
         }
     }
