@@ -60,7 +60,7 @@ namespace ToDo
 
             for (int i = 0; i < TaskList.Count; i++)
             {
-                Console.WriteLine((i + 1) + ". " + TaskList[i]);
+                Console.WriteLine($"{i + 1}. {TaskList[i]}");
             }
 
             Console.WriteLine("----------------------------------------");
