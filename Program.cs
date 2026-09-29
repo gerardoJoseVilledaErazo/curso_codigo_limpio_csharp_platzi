@@ -100,7 +100,7 @@ namespace ToDo
                 Console.WriteLine("Ingrese el nombre de la tarea: ");
                 string newTask = Console.ReadLine();
                 TaskList.Add(newTask);
-                Console.WriteLine("Tarea registrada");
+                Console.WriteLine($"Tarea '{newTask}' registrada");
             }
             catch (Exception ex)
             {
