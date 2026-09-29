@@ -14,17 +14,19 @@ namespace ToDo
             do
             {
                 menuSelected = ShowMainMenu();
-                if ((Menu)menuSelected == Menu.Add)
+                switch ((Menu)menuSelected)
                 {
-                    ShowMenuAdd();
-                }
-                else if ((Menu)menuSelected == Menu.Remove)
-                {
-                    ShowMenuRemove();
-                }
-                else if ((Menu)menuSelected == Menu.List)
-                {
-                    ShowMenuTaskList();
+                    case Menu.Add:
+                        ShowMenuAdd();
+                        break;
+
+                    case Menu.Remove:
+                        ShowMenuRemove();
+                        break;
+
+                    case Menu.List:
+                        ShowMenuTaskList();
+                        break;
                 }
             } while ((Menu)menuSelected != Menu.Exit);
         }
@@ -43,7 +45,13 @@ namespace ToDo
 
             // Read line
             string menuSelected = Console.ReadLine();
-            return Convert.ToInt32(menuSelected);
+
+            if (int.TryParse(menuSelected, out int option))
+            {
+                return option;
+            }
+
+            return 0;
         }
         
         public static void DisplayTasks()
@@ -79,8 +87,9 @@ namespace ToDo
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine($"Error: {ex.Message}");
             }
         }
 
