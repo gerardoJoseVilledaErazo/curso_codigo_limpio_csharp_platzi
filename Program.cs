@@ -68,31 +68,44 @@ namespace ToDo
 
         public static void ShowMenuRemove()
         {
-            try
+            // Check if there are tasks to remove
+            // If not, show message and return
+            // KISS recomienda salir temprano.
+            
+            if (TaskList.Count == 0)
             {
-                Console.WriteLine("Ingrese el número de la tarea a remover: ");
-                // Show current taks
-                DisplayTasks();
+                Console.WriteLine("No hay tareas para eliminar");
+                return;
+            }
 
-                string taskNumberToDelete = Console.ReadLine();
-                // Remove one position
-                int indexToRemove = Convert.ToInt32(taskNumberToDelete) - 1;
-                if (indexToRemove > -1)
-                {
-                    if (TaskList.Count > 0)
-                    {
-                        string taskToRemove = TaskList[indexToRemove];
-                        TaskList.RemoveAt(indexToRemove);
-                        Console.WriteLine($"Tarea '{taskToRemove}' eliminada");
-                    }
-                }
-            }
-            catch (Exception ex)
+            // If there are tasks, show the list and ask for the number of the task to remove
+            Console.WriteLine("Ingrese el número de la tarea a remover: ");
+            // Show current taks
+            DisplayTasks();
+
+            // If the number is invalid, show a message and return
+            if (!int.TryParse(Console.ReadLine(), out int taskNumber))
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine("Ingrese un número válido");
+                return;
             }
+
+            int indexToRemove = taskNumber - 1;
+
+            if (indexToRemove < 0 || indexToRemove >= TaskList.Count)
+            {
+                Console.WriteLine("Número de tarea inválido");
+                return;
+            }
+
+            // If the number is valid, remove the task and show a message
+            string taskToRemove = TaskList[indexToRemove];
+
+            TaskList.RemoveAt(indexToRemove);
+
+            Console.WriteLine($"Tarea '{taskToRemove}' eliminada");
         }
-
+        
         public static void ShowMenuAdd()
         {
             try
